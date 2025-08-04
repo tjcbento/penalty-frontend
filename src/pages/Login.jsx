@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";  // <-- import useNavigate
-
-const BACKEND_URL = "http://localhost:3000"; // 🔁 Change this if needed
+import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config.js";
 
 export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();  // <-- initialize navigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,8 +32,7 @@ export default function Login() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", data.username);
 
-      alert("Logged in successfully!");
-      navigate("/home");  // <-- redirect here
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     } finally {

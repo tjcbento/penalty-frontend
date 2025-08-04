@@ -1,13 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import About from "./pages/About"; // Don't forget to import About
+import Bets from "./pages/Bets";
+import AutomaticBets from "./pages/AutomaticBets";
+import Settings from "./pages/Settings";
 import MainLayout from "./components/MainLayout";
 import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
-      {/* Toast container, position top-center */}
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -23,19 +26,16 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
 
-          <Route
-            path="/*"
-            element={
-              <MainLayout>
-                <Routes>
-                  <Route path="home" element={<Home />} />
-                  {/* add other protected pages here */}
-                </Routes>
-              </MainLayout>
-            }
-          />
+          {/* All protected routes under MainLayout */}
+          <Route path="/" element={<MainLayout />}>
+            <Route path="home" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="bets" element={<Bets />} />
+            <Route path="automaticbets" element={<AutomaticBets />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
 
-          {/* fallback to login */}
+          {/* Fallback route */}
           <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>

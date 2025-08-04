@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 
-function ScoresTable() {
+function ScoresTable({ league }) {
   const [scores, setScores] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${BACKEND_URL}/scores`)
-      .then((res) => res.json())
+    if (!league) return; // Don't fetch without a league
+
+    setLoading(true);
+
+    fetch(`${BACKEND_URL}/scores?league=${encodeURIComponent(league)}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch scores");
+        return res.json();
+      })
       .then((data) => {
         setScores(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching scores:", err);
+        setScores([]);
         setLoading(false);
       });
-  }, []);
+  }, [league]);
 
   if (loading)
     return <div className="text-center text-gray-600">Loading scores...</div>;

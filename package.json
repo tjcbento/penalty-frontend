@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "node copy-env.js development && vite",
+    "dev": "npm run start",
+    "build": "node copy-env.js production && vite build",
+    "preview": "node copy-env.js production && vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.11",
