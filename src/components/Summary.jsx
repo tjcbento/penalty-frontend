@@ -97,7 +97,7 @@ function PredictionsTable() {
                     {["1", "x", "2"].map((label) => (
                       <button
                         key={label}
-                        className={`flex-1 py-1.5 rounded border text-xs hover:bg-gray-100 ${
+                        className={`flex-1 py-1.5 rounded border text-xs ${
                           label === outcome
                             ? "bg-green-500 text-white font-bold"
                             : ""

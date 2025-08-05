@@ -1,8 +1,8 @@
 # Stage 1: Build the app
 FROM node:18 AS builder
 WORKDIR /app
-COPY . .
 RUN mkdir -p config
+COPY . .
 RUN npm install
 RUN npm run build
 

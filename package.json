@@ -4,10 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "node copy-env.js development && vite",
-    "dev": "npm run start",
-    "build": "node copy-env.js production && vite build",
-    "preview": "node copy-env.js production && vite preview",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint ."
   },
   "dependencies": {
