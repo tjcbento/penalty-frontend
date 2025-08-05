@@ -135,7 +135,7 @@ export default function Home() {
       {/* Background overlay */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40"
+          className="fixed inset-0 backdrop-blur-sm z-40"
           onClick={() => setIsMenuOpen(false)}
         />
       )}
