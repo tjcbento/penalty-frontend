@@ -12,12 +12,21 @@ function App() {
   return (
     <>
       <Toaster
-        position="top-center"
-        reverseOrder={false}
         toastOptions={{
-          duration: 5000,
-          style: {
-            marginTop: "100px",
+          success: {
+            duration: 1500,
+            style: {
+              minWidth: "auto",
+              width: "auto",
+              maxWidth: "unset",
+              padding: "8px 14px", // default padding
+              borderRadius: "8px", // default border radius
+              background: "#333", // default success background (or you can use a green)
+              color: "#fff",
+              boxShadow: "0 4px 14px rgb(0 0 0 / 0.1)",
+              cursor: "default",
+              display: "inline-block",
+            },
           },
         }}
       />

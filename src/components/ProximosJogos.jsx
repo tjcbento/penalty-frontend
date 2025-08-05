@@ -108,13 +108,6 @@ function ProximosJogos() {
 
   return (
     <>
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          duration: 4000,
-          style: { marginTop: "3rem" },
-        }}
-      />
       <div className="flex flex-col items-center">
         <div className="bg-white rounded-xl shadow p-6 w-80 mb-4 transition-all duration-500">
           <div className="flex justify-between text-sm text-gray-500 mb-2">
@@ -126,10 +119,11 @@ function ProximosJogos() {
               })}
             </span>
           </div>
-
-          <div className="text-center mb-4">
-            <div className="font-medium text-gray-800">{game.home_team}</div>
-            <div className="font-medium text-gray-800">{game.away_team}</div>
+          
+          <div className="text-center mb-4 flex justify-center items-center space-x-2 font-medium text-gray-800">
+            <div>{game.home_team}</div>
+            <div>-</div>
+            <div>{game.away_team}</div>
           </div>
 
           <div className="flex gap-2 text-sm font-semibold text-gray-700">
