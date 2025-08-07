@@ -1,6 +1,16 @@
+name: Build and Push Frontend Docker Images
+
+on:
+  push:
+    branches:
+      - production
+      - staging
+  workflow_dispatch:
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
