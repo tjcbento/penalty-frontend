@@ -19,6 +19,7 @@ export default function Login() {
     setLoading(true);
 
     try {
+      console.log(BACKEND_URL)
       const res = await fetch(`${BACKEND_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
