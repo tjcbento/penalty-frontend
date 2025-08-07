@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: yourdockerhubusername/penalty-frontend:production-${{ github.sha }}
+          tags: tjcbento/penalty-frontend:production-${{ github.sha }}
           build-args: |
             VITE_ENVIRONMENT=production
 
@@ -40,6 +40,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: yourdockerhubusername/penalty-frontend:staging-${{ github.sha }}
+          tags: tjcbento/penalty-frontend:staging-${{ github.sha }}
           build-args: |
             VITE_ENVIRONMENT=staging
