@@ -3,7 +3,6 @@ name: Build and Push Frontend Docker Images
 on:
   push:
     branches:
-      - main
       - production
       - staging
   workflow_dispatch:
@@ -24,7 +23,7 @@ jobs:
 
       # Build and push production image if on main or production branch
       - name: Build and push production image
-        if: github.ref_name == 'production' || github.ref_name == 'main'
+        if: github.ref_name == 'production'
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -35,7 +34,7 @@ jobs:
 
       # Build and push staging image if on main or staging branch
       - name: Build and push staging image
-        if: github.ref_name == 'staging' || github.ref_name == 'main'
+        if: github.ref_name == 'staging'
         uses: docker/build-push-action@v4
         with:
           context: .
