@@ -1,11 +1,11 @@
-name: Build and Push Frontend Docker Image
+name: Build and Push Frontend Docker Images
 
 on:
   push:
     branches:
+      - main
       - production
       - staging
-
   workflow_dispatch:
 
 jobs:
@@ -13,10 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout specific commit
+      - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.sha }}
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -24,22 +22,24 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      # Build and push production image if on main or production branch
       - name: Build and push production image
-        if: github.ref_name == 'production'
+        if: github.ref_name == 'production' || github.ref_name == 'main'
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: tjcbento/penalty-frontend:production-${{ github.sha }}
+          tags: tjcbento/penalty-frontend:production
           build-args: |
             VITE_ENVIRONMENT=production
 
+      # Build and push staging image if on main or staging branch
       - name: Build and push staging image
-        if: github.ref_name == 'staging'
+        if: github.ref_name == 'staging' || github.ref_name == 'main'
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: tjcbento/penalty-frontend:staging-${{ github.sha }}
+          tags: tjcbento/penalty-frontend:staging
           build-args: |
             VITE_ENVIRONMENT=staging
