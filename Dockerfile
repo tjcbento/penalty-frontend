@@ -1,10 +1,13 @@
-# Stage 1: Build the app
 FROM node:18 AS builder
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 RUN npm install
+COPY . .
+
+ARG VITE_ENVIRONMENT=development
+ENV VITE_ENVIRONMENT=$VITE_ENVIRONMENT
+
 RUN npm run build
 
-# Stage 2: Serve with Nginx
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html

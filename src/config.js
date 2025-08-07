@@ -1,20 +1,11 @@
-// src/config.js
+const env = import.meta.env.VITE_ENVIRONMENT || "development";
 
-const ENV = (import.meta.env.VITE_ENVIRONMENT || "development").toLowerCase();
+const BACKEND_URL = {
+  production: import.meta.env.VITE_BACKEND_URL_PRODUCTION,
+  staging: import.meta.env.VITE_BACKEND_URL_STAGING,
+  development: import.meta.env.VITE_BACKEND_URL_DEVELOPMENT,
+}[env];
 
-const configs = {
-  production: {
-    BACKEND_URL: import.meta.env.VITE_BACKEND_URL_PRODUCTION,
-  },
-  staging: {
-    BACKEND_URL: import.meta.env.VITE_BACKEND_URL_STAGING,
-  },
-  development: {
-    BACKEND_URL: import.meta.env.VITE_BACKEND_URL_DEVELOPMENT,
-  },
-};
+console.log(BACKEND_URL);
 
-const selected = configs[ENV];
-
-export const BACKEND_URL = selected.BACKEND_URL;
-export const ENVIRONMENT = ENV;
+export { BACKEND_URL, env as ENVIRONMENT };
